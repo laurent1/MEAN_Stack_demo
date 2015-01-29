@@ -18,6 +18,6 @@ module.exports = function (app) {
 
   // * matches all routes
   app.get('*', function(req, res) {
-    res.render('index');
+    res.render('index', { bootstrappedUser: req.user});
   });
 };
