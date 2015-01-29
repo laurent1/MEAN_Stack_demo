@@ -15,6 +15,15 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
         }
       });
       return dfd.promise;
+    },
+    logoutUser: function() {
+      var dfd = $q.defer();
+      // {logout:true} to give a body, otherwise Angular will turn this post into a get
+      $http.post('/logout', {logout:true}).then(function() {
+        mvIdentity.currentUser = undefined;
+        dfd.resolve();
+      });
+      return dfd.promise;
     }
   }
 });
