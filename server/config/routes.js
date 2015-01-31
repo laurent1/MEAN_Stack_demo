@@ -2,17 +2,15 @@
  * Created by laurentMac on 1/27/15.
  */
 var auth = require('./auth'),
+  users = require('../controllers/users'),
   mongoose = require('mongoose'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
 
   // if requiresRole call next(), the second (next) function is called
-  app.get('/api/users', auth.requiresRole('admin'), function(req, res) {
-    User.find({}).exec(function(err, collection) {
-      res.send(collection);
-    })
-  });
+  app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+  app.post('/api/users', users.createUser);
 
   // This would. And the files were moved to /public/app/ as well
   app.get('/partials/*', function(req, res) {
