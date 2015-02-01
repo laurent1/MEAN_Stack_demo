@@ -2,7 +2,8 @@
  * Created by laurentMac on 1/27/15.
  */
 var mongoose = require('mongoose'),
-   userModel = require('../models/User');
+   userModel = require('../models/User'),
+ courseModel = require('../models/Course');
 
 module.exports = function (config) {
   mongoose.connect(config.db);
@@ -13,4 +14,5 @@ module.exports = function (config) {
   });
 
   userModel.createDefaukltUsers();
+  courseModel.createDefaultCourses();
 };

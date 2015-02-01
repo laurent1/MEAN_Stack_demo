@@ -3,6 +3,7 @@
  */
 var auth = require('./auth'),
   users = require('../controllers/users'),
+  courses = require('../controllers/courses'),
   mongoose = require('mongoose'),
   User = mongoose.model('User');
 
@@ -12,6 +13,7 @@ module.exports = function (app) {
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
   app.post('/api/users', users.createUser);
   app.put('/api/users', users.updateUser);
+  app.get('/api/courses', courses.getCourses);
 
   // This would. And the files were moved to /public/app/ as well
   app.get('/partials/*', function(req, res) {
@@ -23,6 +25,10 @@ module.exports = function (app) {
   app.post('/logout', function(req, res) {
     req.logout(); // logout() is from passport module
     res.end();
+  });
+
+  app.all('/api/*', function(req, res) {
+    res.send(404);
   });
 
   // * matches all routes
