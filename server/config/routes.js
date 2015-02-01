@@ -11,6 +11,7 @@ module.exports = function (app) {
   // if requiresRole call next(), the second (next) function is called
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
   app.post('/api/users', users.createUser);
+  app.put('/api/users', users.updateUser);
 
   // This would. And the files were moved to /public/app/ as well
   app.get('/partials/*', function(req, res) {
