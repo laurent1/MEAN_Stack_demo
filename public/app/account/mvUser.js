@@ -2,7 +2,6 @@
  * Created by laurentMac on 1/29/15.
  */
 angular.module('app').factory('mvUser', function($resource) {
-  // TO DO: implement this route
   var UserResource = $resource('/api/users/:id', {_id: "@id"}, {
     update: {method:'PUT',isArray:false}
   });

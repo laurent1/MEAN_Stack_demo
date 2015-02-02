@@ -13,7 +13,7 @@ angular.module('app').factory('mvNotifier', function(mvToastr) {
       console.log(msg);
     },
     error: function(msg) {
-      mvToastr.success(msg);
+      mvToastr.error(msg);
       console.log(msg);
     }
   }
